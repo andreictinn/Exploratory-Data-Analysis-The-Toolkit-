@@ -1,7 +1,6 @@
 import pandas as pd
 import pymysql
 from sqlalchemy import create_engine
-import yaml
 import logging
 
 class RDSDatabaseConnector:
@@ -21,12 +20,11 @@ class RDSDatabaseConnector:
         self.engine = None
         self.logger = logging.getLogger(__name__)
 
-    def initialize(self):
+    def _establish_connection(self):
         """
-        Initialize database connection and engine.
+        Establish database connection.
         """
         try:
-            # Establish connection
             self.connection = pymysql.connect(
                 host=self.host,
                 user=self.user,
@@ -34,15 +32,11 @@ class RDSDatabaseConnector:
                 database=self.database
             )
             self.logger.info('Connected to the database.')
-
-            # Initialize engine
-            self.engine = create_engine(f'mysql+pymysql://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}')
-            self.logger.info('Engine initialized.')
-
         except pymysql.MySQLError as e:
-            self.logger.error(f'Error initializing: {str(e)}')
+            self.logger.error(f'Error establishing connection: {str(e)}')
+            raise  # Reraise the exception
 
-    def execute_query(self, query):
+    def _handle_query_execution(self, query):
         """
         Execute SQL query.
 
@@ -53,7 +47,7 @@ class RDSDatabaseConnector:
             result (list or None): Result of the query.
         """
         if not self.connection:
-            self.logger.warning('Not connected to the database. Call initialize() first.')
+            self.logger.warning('Not connected to the database. Call _establish_connection() first.')
             return None
 
         try:
@@ -61,12 +55,11 @@ class RDSDatabaseConnector:
                 cursor.execute(query)
                 result = cursor.fetchall()
                 return result
-
         except pymysql.MySQLError as e:
             self.logger.error(f'Error executing query: {str(e)}')
-            return None
+            raise  # Reraise the exception
 
-    def fetch_data(self, query):
+    def _handle_data_fetching(self, query):
         """
         Fetch data from the database.
 
@@ -77,21 +70,38 @@ class RDSDatabaseConnector:
             data (pd.DataFrame or None): DataFrame containing the fetched data.
         """
         if not self.engine:
-            self.logger.warning('Engine not initialized. Call initialize() first.')
+            self.logger.warning('Engine not initialized. Call _establish_connection() first.')
             return None
 
         try:
             data = pd.read_sql_query(query, self.engine)
             self.logger.info('Data extracted.')
             return data
-
         except pd.errors.EmptyDataError:
             self.logger.warning('No data extracted. The query returned an empty result set.')
             return None
-
         except Exception as e:
             self.logger.error(f'Error fetching data: {str(e)}')
-            return None
+            raise  # Reraise the exception
+
+    def establish_and_fetch(self, query):
+        """
+        Establish connection, execute query, and fetch data.
+
+        Parameters:
+            query (str): SQL query.
+
+        Returns:
+            result (list or None): Result of the query.
+            data (pd.DataFrame or None): DataFrame containing the fetched data.
+        """
+        try:
+            self._establish_connection()
+            result = self._handle_query_execution(query)
+            data = self._handle_data_fetching(query)
+            return result, data
+        finally:
+            self.close_connection()
 
     def close_connection(self):
         """
@@ -115,33 +125,10 @@ class RDSDatabaseConnector:
         try:
             data.to_csv(filename, index=False)
             self.logger.info(f'Data saved to {filename}.')
-
         except Exception as e:
             self.logger.error(f'Error saving data to CSV: {str(e)}')
 
+if __name__ == "__main__":
+    
 
-def load_local_data(file_path="loan_payments.csv"):
-    """
-    Load data from a local CSV file into a Pandas DataFrame.
-
-    Parameters:
-        file_path (str): Path to the CSV file.
-
-    Returns:
-        data (pd.DataFrame or None): DataFrame containing the loaded data.
-    """
-    try:
-        data = pd.read_csv(file_path)
-        logging.info(f"Data loaded successfully. Shape: {data.shape}")
-        logging.info("Sample of the data:")
-        logging.info(data.head())
-        return data
-
-    except pd.errors.EmptyDataError:
-        logging.warning('No data loaded. The CSV file is empty.')
-        return None
-
-    except Exception as e:
-        logging.error(f"Error loading data: {str(e)}")
-        return None
 
