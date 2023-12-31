@@ -10,7 +10,7 @@ def visualize_correlation_heatmap(file_path):
     - file_path (str): The file path of the cleaned DataFrame CSV file.
 
     Returns:
-    None
+    Decide based on the data which columns should be removed to improve future analysis 
     """
     # Load the cleaned DataFrame from the new CSV file
     df = pd.read_csv(file_path)
