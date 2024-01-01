@@ -2,6 +2,22 @@
 
 Welcome to the Exploratory Data Analysis (EDA) Toolkit! These tools have been designed specifically for analyzing and visualizing financial data. This repository houses a collection of python scripts to be used accordingly with your project's specifications and dataset needs. Thus, the purpose of this toolkit is to aid others with data analysis tasks through a versatile and modular set of scripts.
 
+## Table of Contents
+
+1. [Understanding the Project](#understanding-the-project)
+2. [Files and Descriptions](#files-and-descriptions)
+3. [Usage](#usage)
+4. [EDA Toolkit Application - an example](#eda-toolkit-application---an-example)
+5. [Visual Code Library Requirements](#visual-code-library-requirements)
+6. [License](#license)
+
+## What You'll Learn
+
+By exploring this toolkit, you will:
+
+- Understand financial data analysis techniques
+- Learn how to extract, clean, manipulate, visualize, and analyze financial loans data
+- Gain insights into modular and versatile script usage for specific data analysis needs
 
 ## Understanding the Project
 The core focus of this toolkit revolves around the exploration and interpretation of financial loans data. This project includes the essentials scripts for data extraction, cleaning, manipulation, visualization and analysis. Whether you are an analyst, data scientist, or a finance professional, this toolkit provides the resources needed to glean meaningful information from loan datasets.
