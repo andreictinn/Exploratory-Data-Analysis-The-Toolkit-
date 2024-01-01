@@ -45,5 +45,5 @@ def analyze_loan_indicators(file_path):
 
 if __name__ == "__main__":
     # Example usage
-    file_path = 'D:/Coding/loan_payments.csv'
+    file_path = '...'
     analyze_loan_indicators(file_path)
