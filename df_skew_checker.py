@@ -29,5 +29,5 @@ def plot_skewness(dataset_path):
     plt.show()
 
 # Example usage
-dataset_path = 'D:/Coding/df_no_outliers.csv'
+dataset_path = '...'
 plot_skewness(dataset_path)
