@@ -42,7 +42,7 @@ def clean_and_visualize_data(file_path):
     return df, list(columns_to_drop)
 
 # Example usage
-file_path = 'D:/Coding/loan_payments.csv'
+file_path = '...'
 cleaned_df, dropped_columns = clean_and_visualize_data(file_path)
 
 # Display the dropped columns
