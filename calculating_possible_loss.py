@@ -45,7 +45,7 @@ def calculate_loss_and_visualize_risk(file_path):
     return percentage_late_customers, total_late_customers, loss_if_charged_off, projected_loss, total_loss_percentage
 
 # Example usage
-file_path = 'D:/Coding/loan_payments.csv'
+file_path = '...'
 result = calculate_loss_and_visualize_risk(file_path)
 
 # Display the results
