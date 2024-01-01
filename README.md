@@ -42,10 +42,10 @@ This toolset is modular which means that each of the following python scripts ca
 
 ### Usage 
 To use these scripts, follow the instructions provided in each script's docstrings. 
-Each script in this toolkit can be utilized independently, providing flexibility based on specific data analysis needs. Consult the docstrings within each script for comprehensive instructions on usage and any additional detail
+Each script in this toolkit can be utilized independently, providing flexibility based on specific data analysis needs. Consult the docstrings within each script for comprehensive instructions on usage and any additional details.
 
 
-Intended order - an example: 
+##### EDA Toolkit Application - an example: 
 
 1. **df_extractor.py** - Extracting your database. Ensure yaml file is updated to include login credentials for your project.
 2. **data_visualization.py** - First look at your data. Spend some time to understand what your data looks like and what data types you are working with.
