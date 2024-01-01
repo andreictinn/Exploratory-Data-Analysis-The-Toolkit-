@@ -48,7 +48,7 @@ def print_entire_dataframe(df):
     pd.reset_option('display.max_rows')
 
 # Load the CSV file
-file_path = 'D:/Coding/loan_payments.csv'
+file_path = '...'
 df = load_csv_file(file_path)
 
 # Display the first few lines of the CSV file
