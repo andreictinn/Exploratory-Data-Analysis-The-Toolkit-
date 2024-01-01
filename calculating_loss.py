@@ -26,7 +26,7 @@ def calculate_charged_off_percentage_and_recovery(file_path):
     return charged_off_percentage, total_amount_paid
 
 # Example usage
-file_path = 'D:/Coding/loan_payments.csv'
+file_path = '...'
 charged_off_percentage, total_amount_paid = calculate_charged_off_percentage_and_recovery(file_path)
 
 # Display the results
