@@ -42,6 +42,6 @@ def remove_outliers_and_save(input_file_path, output_file_path):
     print(IQR_no_outliers)
 
 # Example usage
-input_path = 'D:/Coding/loan_payments.csv'
-output_path = 'D:/Coding/df_no_outliers.csv'
+input_path = '...'
+output_path = '...'
 remove_outliers_and_save(input_path, output_path)
