@@ -32,7 +32,7 @@ def calculate_projected_loss_and_visualize(file_path):
     return projected_loss
 
 # Example usage
-file_path = 'D:/Coding/loan_payments.csv'
+file_path = '...'
 projected_loss = calculate_projected_loss_and_visualize(file_path)
 
 # Display the projected loss
