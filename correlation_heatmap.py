@@ -32,11 +32,11 @@ def visualize_correlation_heatmap(file_path):
 if __name__ == "__main__":
 
 # Example usage
- file_path ='D:/Coding/df_without_redundant_columns.csv'
+ file_path ='...'
 visualize_correlation_heatmap(file_path)
 
 # Optional usage - print a numerical version of the heatmap 
-file_path = 'D:/Coding/df_cleaned_with_dropped_columns.csv'
+file_path = '...'
 # Select numerical columns
 numerical_columns = df.select_dtypes(include=['float64', 'int64']).columns
 
